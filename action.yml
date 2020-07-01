@@ -1,1 +1,4 @@
 name: "Time expr demo deploy"
+runs:
+  using: "docker"
+  image: "Dockerfile"
