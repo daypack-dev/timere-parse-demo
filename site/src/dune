@@ -1,0 +1,9 @@
+(executable
+ (name demo)
+ (libraries daypack-lib)
+ (flags       (-w "+a-4-29-32-37-40-42-44-48-50"))
+ (preprocess (pps js_of_ocaml-ppx lwt_ppx)))
+
+(alias
+ (name js)
+ (deps demo.bc.js))
