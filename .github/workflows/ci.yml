@@ -12,5 +12,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
-      - name: Make
-        uses: make
+      - name: make
+        uses: ./
