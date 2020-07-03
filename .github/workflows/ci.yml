@@ -12,5 +12,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
-      - name: make
+      - name: Build
         uses: ./
+
+      - name: Deploy
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
