@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Time expr demo</title>
+    <title>Time expression demo</title>
     <style type="text/css">
       * {
           box-sizing: border-box;
@@ -17,17 +17,21 @@
           width: 100%;
           height: 5%;
       }
-      #inputBox {
+      #left {
           display: block;
-          float: left;
           width: 40%;
+          float: left;
+      }
+      #inputBox {
           font-family: monospace;
+          float: top;
+          width: 100%;
       }
       #outputBox {
           display: block;
           background-color: lightblue;
           float: top;
-          width: 40%;
+          width: 100%;
           font-family: monospace;
       }
       #exampleBox {
@@ -40,12 +44,26 @@
   <body>
     <div id="header">
       Powered by Daypack-lib <br>
-      Note that only first 100 items are displayed
+      Note that only first 100 items are displayed <br>
+      Search range is limited to 2 years from now
     </div>
-    <input id="inputBox" type="text"/>
+
+    <div id="left">
+      <input id="inputBox" type="text"/>
+      <div id="outputBox"></div>
+    </div>
+
     <div id="exampleBox">
+      Examples
+      <ul>
+        <li>Time pattern
+          <ul>
+            <li></li>
+            <li>Green tea</li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <div id="outputBox"></div>
 
     <script src="demo.bc.js"></script>
   </body>

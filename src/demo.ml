@@ -10,7 +10,7 @@ let () =
     Js.Unsafe.global##.document##getElementById output_box_id
   in
   let search_param =
-    Daypack_lib.Search_param.Years_ahead_start_unix_second { search_using_tz_offset_s = None; start = Daypack_lib.Time.Current.cur_unix_second (); search_years_ahead = 1; }
+    Daypack_lib.Search_param.Years_ahead_start_unix_second { search_using_tz_offset_s = None; start = Daypack_lib.Time.Current.cur_unix_second (); search_years_ahead = 2; }
   in
   output_box##.innerHTML := Js.string "output";
   let write_msg s =
