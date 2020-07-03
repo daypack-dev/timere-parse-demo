@@ -29,30 +29,30 @@ let () =
                   Daypack_lib.Time_expr.matching_time_slots search_param expr
                 with
                 | Error msg -> write_error msg
-                | Ok s ->
-                  let l =
-                    s
-                    |> OSeq.take 100
-                    |> Seq.map (fun (x, y) ->
-                        let x =
-                          Daypack_lib.Time.To_string
-                          .yyyymondd_hhmmss_string_of_unix_second
-                            ~display_using_tz_offset_s:None x
-                          |> Result.get_ok
-                        in
-                        let y =
-                          Daypack_lib.Time.To_string
-                          .yyyymondd_hhmmss_string_of_unix_second
-                            ~display_using_tz_offset_s:None y
-                          |> Result.get_ok
-                        in
-                        Printf.sprintf "[%s, %s)" x y)
-                    |> List.of_seq
-                  in
-                  match l with
-                  | [] -> write_msg "No time slots found"
-                  | _ ->
-                    let str = String.concat "<br>" l in
-                    write_msg str ) );
+                | Ok s -> (
+                    let l =
+                      s
+                      |> OSeq.take 100
+                      |> Seq.map (fun (x, y) ->
+                          let x =
+                            Daypack_lib.Time.To_string
+                            .yyyymondd_hhmmss_string_of_unix_second
+                              ~display_using_tz_offset_s:None x
+                            |> Result.get_ok
+                          in
+                          let y =
+                            Daypack_lib.Time.To_string
+                            .yyyymondd_hhmmss_string_of_unix_second
+                              ~display_using_tz_offset_s:None y
+                            |> Result.get_ok
+                          in
+                          Printf.sprintf "[%s, %s)" x y)
+                      |> List.of_seq
+                    in
+                    match l with
+                    | [] -> write_msg "No time slots found"
+                    | _ ->
+                      let str = String.concat "<br>" l in
+                      write_msg str ) ) );
         Js._true);
   ()
