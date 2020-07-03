@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Time expression demo</title>
+    <style type="text/css">
+      * {
+          box-sizing: border-box;
+      }
+      body, html {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+      }
+      #header {
+          float: top;
+          width: 100%;
+          height: 10em;
+      }
+      #left {
+          display: block;
+          width: 40%;
+          height: 100%;
+          float: left;
+      }
+      #inputBox {
+          font-family: monospace;
+          float: top;
+          width: 100%;
+      }
+      #outputBox {
+          display: block;
+          background-color: lightblue;
+          float: top;
+          width: 100%;
+          height: 70%;
+          font-family: monospace;
+          overflow-y: scroll;
+      }
+      #exampleBox {
+          float: right;
+          width: 55%;
+          height: 100%;
+          overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="left">
+      <div id="header">
+        Powered by <tt><a href="https://github.com/daypack-dev/daypack-lib">Daypack-lib</a></tt>
+        (via <tt>js_of_ocaml</tt>)<br>
+        Note that only first 100 items are displayed <br>
+        Search range is limited to 2 years from now <br>
+        This is a static site - all processing is done locally <br>
+        <br>
+        Enter input below and hit enter to invoke evaluation
+      </div>
+
+      <input id="inputBox" type="text"/>
+      <div id="outputBox"></div>
+    </div>
+
+    <div id="exampleBox">
+      Time expression examples
+      <ul>
+        <li>Time pattern
+          <ul>
+            <li> <tt>hm</tt>
+              <ul>
+                <li>Empty/wildcard pattern</li>
+              </ul>
+            </li>
+            <li> <tt>h[13]m</tt>
+              <ul>
+                <li>Matches 13:00:00 to 13:59:59</li>
+              </ul>
+            </li>
+            <li> <tt>m[aug]w[thu]hm</tt>
+              <ul>
+                <li>Matches all the Thursdays in all Augusts</li>
+              </ul>
+            </li>
+            <li> <tt>y[2021]m[jan,may]d[1-20]w[fri]h[13]m[0]s[0]</tt>
+              <ul>
+                <li>Matches 13:00:00 of days where it's both Friday and within 1st to 20th of Jan or May in 2021</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Time points expression
+          <ul>
+            <li> <tt>1 13:00</tt>
+              <ul>
+                <li>Matches upcoming 13:00:00 of 1st of any month</li>
+              </ul>
+            </li>
+            <li> <tt>nov 10 14:00</tt>
+              <ul>
+                <li>Matches upcoming 14:00:00 of 10th of november of any year</li>
+              </ul>
+            </li>
+            <li> <tt>2021 mar 1 15:00</tt>
+              <ul>
+                <li>Matches 2021 March 1st 15:00:00</li>
+              </ul>
+            </li>
+            <li> <tt>2021-3-1 7:15pm</tt>
+              <ul>
+                <li>Matches 2021 March 1st 19:15:00</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>Time slots expression
+          <ul>
+            <li> <tt>1pm to 14:15</tt>
+              <ul>
+                <li>Matches upcoming 13:00:00 - 14:15:00</li>
+              </ul>
+            </li>
+            <li> <tt>nov 10 7:45pm to 11pm</tt>
+              <ul>
+                <li>Matches upcoming 19:45:00 to 22:59:59 of 10th of November of any year</li>
+              </ul>
+            </li>
+            <li> <tt>2021-3-1 7:15pm to 2021 mar 2 00:00,
+                apr 1 15:00 to 2 9am, 1pm to 2pm</tt>
+              <ul>
+                <li>Matches 2021 March 1st 19:15:00 to 23:59:59</li>
+                <li>then the following April 1st 15:00:00 to April 2nd 8:59:59</li>
+                <li>then the following 13:00 to 14:00</li>
+              </ul>
+            </li>
+            <li> <tt>mar to apr . 1 to 10, 15 to 16 . 11am to 1pm</tt>
+              <ul>
+                <li>Matches 11:00:00 to 12:59:59 of 1st to 10th, 15th to 16th of March and April</li>
+              </ul>
+            </li>
+            <li> <tt>mar . fri to mon . 4pm to 4:30pm, 19:00 to 21:00</tt>
+              <ul>
+                <li>Matches 16:00:00 16:29:59, 19:00:00 to 20:59:59 of friday to monday of March</li>
+              </ul>
+            </li>
+            <li> <tt>2020 to 2022. jan . 1 to 2, 5 to 6 . 9am to 11am</tt>
+              <ul>
+                <li>Matches 09:00:00 to 10:59:59 of 1st to 2nd, 5th to 6th of January of 2020, 2021, 2022</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li> Union (<tt> || </tt>)
+          <ul>
+            <li> <tt>2020 aug 2 13:00 to 14:00 || 2021 sep 1 9am to 10am</tt>
+            </li>
+          </ul>
+        </li>
+        <li> Intersect (<tt> && </tt>)
+          <ul>
+            <li> <tt>w[thu]h[13] && 2020 aug 2 00:00 to sep 1 00:00 </tt>
+            </li>
+          </ul>
+        </li>
+        <li> Invert (<tt> not </tt>) (still being fixed)
+          <ul>
+            <li> <tt>not w[thu,fri]hm</tt>
+            </li>
+          </ul>
+        </li>
+        <li> More complex examples (TODO)
+        </li>
+      </ul>
+    </div>
+
+    <script src="demo.bc.js"></script>
+  </body>
+</html>
