@@ -1,6 +1,10 @@
 (executable
  (name demo)
- (libraries daypack-lib)
+ (modes js)
+ (libraries daypack-lib
+            js_of_ocaml
+            oseq
+ )
  (flags       (-w "+a-4-29-32-37-40-42-44-48-50"))
  (preprocess (pps js_of_ocaml-ppx lwt_ppx)))
 
