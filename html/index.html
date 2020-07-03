@@ -15,7 +15,7 @@
       #header {
           float: top;
           width: 100%;
-          height: 5%;
+          height: 10%;
       }
       #left {
           display: block;
@@ -43,9 +43,10 @@
   </head>
   <body>
     <div id="header">
-      Powered by Daypack-lib <br>
+      Powered by <tt><a href="https://github.com/daypack-dev/daypack-lib">Daypack-lib</a></tt> <br>
       Note that only first 100 items are displayed <br>
-      Search range is limited to 2 years from now
+      Search range is limited to 2 years from now <br>
+      All processing is done locally
     </div>
 
     <div id="left">
@@ -54,12 +55,82 @@
     </div>
 
     <div id="exampleBox">
-      Examples
+      Time expression examples
       <ul>
         <li>Time pattern
           <ul>
-            <li></li>
-            <li>Green tea</li>
+            <li> <tt>hm</tt>
+              <ul>
+                <li>Empty/wildcard pattern</li>
+              </ul>
+            </li>
+            <li> <tt>h[13]m</tt>
+              <ul>
+                <li>Matches 13:00:00 to 13:59:59</li>
+              </ul>
+            </li>
+            <li> <tt>m[aug]w[thu]hm</tt>
+              <ul>
+                <li>Matches all the Thursdays in all Augusts</li>
+              </ul>
+            </li>
+            <li> <tt>y[2021]m[jan,may]d[1-20]w[fri]h[13]m[0]s[0]</tt>
+              <ul>
+                <li>Matches 13:00:00 of days where it's both Friday and within 1st to 20th of Jan or May in 2021</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>Time points expression
+          <ul>
+            <li> <tt>1 13:00</tt>
+              <ul>
+                <li>Matches upcoming 13:00:00 of 1st of any month</li>
+              </ul>
+            </li>
+            <li> <tt>nov 10 14:00</tt>
+              <ul>
+                <li>Matches upcoming 14:00:00 of 1st of november of any year</li>
+              </ul>
+            </li>
+            <li> <tt>2021 mar 1 15:00</tt>
+              <ul>
+                <li>Matches 2021 March 1st 15:00:00</li>
+              </ul>
+            </li>
+            <li> <tt>2021-3-1 7:15pm</tt>
+              <ul>
+                <li>Matches 2021 March 1st 19:15:00</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>Time slots expression
+          <ul>
+            <li> <tt>1 13:00</tt>
+              <ul>
+                <li>Matches upcoming 13:00:00 of 1st of any month</li>
+              </ul>
+            </li>
+            <li> <tt>nov 10 14:00</tt>
+              <ul>
+                <li>Matches upcoming 14:00:00 of 1st of november of any year</li>
+              </ul>
+            </li>
+            <li> <tt>2021 mar 1 15:00</tt>
+              <ul>
+                <li>Matches 2021 March 1st 15:00:00</li>
+              </ul>
+            </li>
+            <li> <tt>2021-3-1 7:15pm</tt>
+              <ul>
+                <li>Matches 2021 March 1st 19:15:00</li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
