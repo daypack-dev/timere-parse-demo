@@ -16,6 +16,7 @@ build :
 	dune build @js
 	cp html/index.html _build/default/src/
 ifneq ($(DEBUG), 1)
+	find _build/ -name "dune" -type f -delete
 	find _build/ -name "*.ml" -type f -delete
 	find _build/ -name "*.mli"      -type f -delete
 	find _build/ -name "*.mly"      -type f -delete
