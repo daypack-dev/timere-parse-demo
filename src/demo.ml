@@ -48,7 +48,7 @@ let () =
                         in
                         Printf.sprintf "[%s, %s)" x y)
                     |> List.of_seq
-                    |> String.concat "\n"
+                    |> String.concat "<br>"
                   in
                   write_msg str ) );
         Js._true);
