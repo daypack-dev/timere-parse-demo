@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: |
           opam install dune oseq js_of_ocaml
-          make
+          eval $(opam env); make
           mkdir public
           cp _build/default/src/* public/
 
