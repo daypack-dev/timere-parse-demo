@@ -20,6 +20,7 @@
       #left {
           display: block;
           width: 40%;
+          height: 100%;
           float: left;
       }
       #inputBox {
@@ -32,12 +33,15 @@
           background-color: lightblue;
           float: top;
           width: 100%;
+          height: 70%;
           font-family: monospace;
+          overflow-y: scroll;
       }
       #exampleBox {
-          display: block;
           float: right;
           width: 55%;
+          height: 100%;
+          overflow-y: scroll;
       }
     </style>
   </head>
@@ -84,8 +88,6 @@
             </li>
           </ul>
         </li>
-      </ul>
-      <ul>
         <li>Time points expression
           <ul>
             <li> <tt>1 13:00</tt>
@@ -110,8 +112,6 @@
             </li>
           </ul>
         </li>
-      </ul>
-      <ul>
         <li>Time slots expression
           <ul>
             <li> <tt>1pm to 14:15</tt>
@@ -124,19 +124,50 @@
                 <li>Matches upcoming 19:45:00 to 22:59:59 of 10th of November of any year</li>
               </ul>
             </li>
-            <li> <tt>2021 mar 29 15:00 to apr 1 21:00</tt>
-              <ul>
-                <li>Matches 2021 March 29th 15:00:00 to April 1st 20:59:59</li>
-              </ul>
-            </li>
-            <li> <tt>2021-3-1 7:15pm to 2021 mar 2 00:00, apr 1 15:00 to 2 9am, 1pm to 2pm</tt>
+            <li> <tt>2021-3-1 7:15pm to 2021 mar 2 00:00,
+                apr 1 15:00 to 2 9am, 1pm to 2pm</tt>
               <ul>
                 <li>Matches 2021 March 1st 19:15:00 to 23:59:59</li>
                 <li>then the following April 1st 15:00:00 to April 2nd 8:59:59</li>
                 <li>then the following 13:00 to 14:00</li>
               </ul>
             </li>
+            <li> <tt>mar to apr . 1 to 10, 15 to 16 . 11am to 1pm</tt>
+              <ul>
+                <li>Matches 11:00:00 to 12:59:59 of 1st to 10th, 15th to 16th of March and April</li>
+              </ul>
+            </li>
+            <li> <tt>mar . fri to mon . 4pm to 4:30pm, 19:00 to 21:00</tt>
+              <ul>
+                <li>Matches 16:00:00 16:29:59, 19:00:00 to 20:59:59 of friday to monday of March</li>
+              </ul>
+            </li>
+            <li> <tt>2020 to 2022. jan . 1 to 2, 5 to 6 . 9am to 11am</tt>
+              <ul>
+                <li>Matches 09:00:00 to 10:59:59 of 1st to 2nd, 5th to 6th of January of 2020, 2021, 2022</li>
+              </ul>
+            </li>
           </ul>
+        </li>
+        <li> Union (<tt> || </tt>)
+          <ul>
+            <li> <tt>2020 aug 2 13:00 to 14:00 || 2021 sep 1 9am to 10am</tt>
+            </li>
+          </ul>
+        </li>
+        <li> Intersect (<tt> && </tt>)
+          <ul>
+            <li> <tt>w[thu]h[13] && 2020 aug 2 00:00 to sep 1 00:00 </tt>
+            </li>
+          </ul>
+        </li>
+        <li> Invert (<tt> not </tt>)
+          <ul>
+            <li> <tt>not w[thu,fri]hm</tt>
+            </li>
+          </ul>
+        </li>
+        <li> More complex examples
         </li>
       </ul>
     </div>

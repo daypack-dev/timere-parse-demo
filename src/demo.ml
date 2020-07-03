@@ -30,7 +30,7 @@ let () =
                 with
                 | Error msg -> write_error msg
                 | Ok s ->
-                  let str =
+                  let l =
                     s
                     |> OSeq.take 100
                     |> Seq.map (fun (x, y) ->
@@ -48,8 +48,11 @@ let () =
                         in
                         Printf.sprintf "[%s, %s)" x y)
                     |> List.of_seq
-                    |> String.concat "<br>"
                   in
-                  write_msg str ) );
+                  match l with
+                  | [] -> write_msg "No time slots found"
+                  | _ ->
+                    let str = String.concat "<br>" l in
+                    write_msg str ) );
         Js._true);
   ()
