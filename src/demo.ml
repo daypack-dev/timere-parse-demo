@@ -10,7 +10,7 @@ let () =
       {
         search_using_tz_offset_s = None;
         start = Daypack_lib.Time.Current.cur_unix_second ();
-        search_years_ahead = 2;
+        search_years_ahead = 100;
       }
   in
   output_box##.innerHTML := Js.string "output";
