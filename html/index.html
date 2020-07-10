@@ -51,7 +51,8 @@
         Powered by <tt><a href="https://github.com/daypack-dev/daypack-lib">Daypack-lib</a></tt>
         (via <tt>js_of_ocaml</tt>)<br>
         Note that only first 100 items are displayed <br>
-        Search range is limited to 100 years from now <br>
+        Search range is limited to 5 years from now <br>
+        Search is done in UTC timezone <br>
         This is a static site - all processing is done locally <br>
         <br>
         Enter input below and hit enter to invoke evaluation
@@ -88,7 +89,7 @@
             </li>
           </ul>
         </li>
-        <li>Time points expression
+        <li>Time point expression
           <ul>
             <li> <tt>1 13:00</tt>
               <ul>
@@ -112,7 +113,7 @@
             </li>
           </ul>
         </li>
-        <li>Time slots expression
+        <li>Time slot expression
           <ul>
             <li> <tt>1pm to 14:15</tt>
               <ul>
@@ -124,12 +125,9 @@
                 <li>Matches upcoming 19:45:00 to 22:59:59 of 10th of November of any year</li>
               </ul>
             </li>
-            <li> <tt>2021-3-1 7:15pm to 2021 mar 2 00:00,
-                apr 1 15:00 to 2 9am, 1pm to 2pm</tt>
+            <li> <tt>2021-3-1 7:15pm to 2021 mar 2 00:00</tt>
               <ul>
                 <li>Matches 2021 March 1st 19:15:00 to 23:59:59</li>
-                <li>then the following April 1st 15:00:00 to April 2nd 8:59:59</li>
-                <li>then the following 13:00 to 14:00</li>
               </ul>
             </li>
             <li> <tt>mar to apr . 1 to 10, 15 to 16 . 11am to 1pm</tt>
@@ -155,6 +153,24 @@
             </li>
           </ul>
         </li>
+        <li> Ordered select (<tt> &gt;&gt; </tt>)
+          <ul>
+            <li> <tt>5pm &gt;&gt; 8pm</tt>
+            </li>
+            <li>
+              <tt> e1 &gt;&gt; e2 &gt;&gt; ... </tt> is similar to <tt> e1 || e2 || ... </tt>,
+              but <tt> &gt;&gt; </tt> searches for <tt> e2 </tt> from start of <tt> e1 </tt>,
+              <tt> e3 </tt> from start of <tt> e2 </tt> and so on
+              <br>
+            </li>
+            <li>
+              One example of mismatch: suppose it is 5pm right now,
+              <tt> 4pm || 6pm </tt> would match 6pm today and 4pm tomorrow for its first two matches,
+              <tt> 4pm &gt;&gt; 6pm </tt> would match 4pm tomorrow and 6pm tomorrow instead.
+              That is, each 6pm match would need to be after or starting at a 4pm match (in this case 6pm obviously cannot be starting at 4pm).
+            </li>
+          </ul>
+        </li>
         <li> Intersect (<tt> && </tt>)
           <ul>
             <li> <tt>w[thu]h[13]m && 2020 aug 2 00:00 to sep 1 00:00 </tt>
@@ -168,6 +184,14 @@
           </ul>
         </li>
         <li> More complex examples (TODO)
+          <ul>
+            <li> <tt> </tt>
+              <ul>
+                <li>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

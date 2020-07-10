@@ -10,7 +10,7 @@ let () =
       {
         search_using_tz_offset_s = None;
         start = Daypack_lib.Time.Current.cur_unix_second ();
-        search_years_ahead = 100;
+        search_years_ahead = 5;
       }
   in
   output_box##.innerHTML := Js.string "output";
@@ -20,7 +20,7 @@ let () =
     Dom_html.handler (fun e ->
         ( if e##.keyCode = 13 then
             match
-              Daypack_lib.Time_expr.Of_string.of_string
+              Daypack_lib.Time_expr.of_string
                 (Js.to_string input_box##.value)
             with
             | Error msg -> write_error msg
