@@ -6,12 +6,10 @@ let () =
   let input_box = Js.Unsafe.global##.document##getElementById input_box_id in
   let output_box = Js.Unsafe.global##.document##getElementById output_box_id in
   let search_param =
-    Daypack_lib.Search_param.Years_ahead_start_unix_second
-      {
-        search_using_tz_offset_s = None;
-        start = Daypack_lib.Time.Current.cur_unix_second ();
-        search_years_ahead = 5;
-      }
+    Daypack_lib.Search_param.make_using_years_ahead
+      ~start:(`Unix_second (Daypack_lib.Time.Current.cur_unix_second ()))
+      5
+    |> Result.get_ok
   in
   output_box##.innerHTML := Js.string "output";
   let write_msg s = output_box##.innerHTML := Js.string s in
@@ -20,8 +18,7 @@ let () =
     Dom_html.handler (fun e ->
         ( if e##.keyCode = 13 then
             match
-              Daypack_lib.Time_expr.of_string
-                (Js.to_string input_box##.value)
+              Daypack_lib.Time_expr.of_string (Js.to_string input_box##.value)
             with
             | Error msg -> write_error msg
             | Ok expr -> (
