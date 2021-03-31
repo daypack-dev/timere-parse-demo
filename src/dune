@@ -1,7 +1,8 @@
 (executable
  (name demo)
  (modes js)
- (libraries daypack-lib
+ (libraries timere
+            timere-parse
             js_of_ocaml
             oseq
  )
