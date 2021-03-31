@@ -16,10 +16,10 @@ let () =
               (Js.to_string input_box##.value)
             with
             | Error msg -> write_error msg
-            | Ok expr -> (
+            | Ok t -> (
+                let tz = Timere.Time_zone.utc in
                 match
-                  Timere.resolve
-                   expr
+                  Timere.(resolve ~search_using_tz:tz (t & after (Date_time.now ~tz_of_date_time:tz ()) & before (Date_time.make_exn ~tz ~year:2050 ~month:`Jan ~day:1 ~hour:0 ~minute:0 ~second:0)))
                 with
                 | Error msg -> write_error msg
                 | Ok s -> (
@@ -29,17 +29,18 @@ let () =
                       |> Seq.map (fun (x, y) ->
                           let x =
                             x
-                            |> Timere.Date_time.of_timestamp
+                            |> Timere.Date_time.of_timestamp ~tz_of_date_time:tz
                             |> Option.get
-                            |> Timere.Date_time.to_rfc3339
+                            |> Timere.Date_time.to_string
                           in
                           let y =
                             y
-                            |> Timere.Date_time.of_timestamp
+                            |> Timere.Date_time.of_timestamp ~tz_of_date_time:tz
                             |> Option.get
-                            |> Timere.Date_time.to_rfc3339
+                            |> Timere.Date_time.to_string
                           in
-                          Printf.sprintf "[%s, %s)" x y)
+                          Printf.sprintf "[%s, %s)" x y
+                        )
                       |> List.of_seq
                     in
                     match l with

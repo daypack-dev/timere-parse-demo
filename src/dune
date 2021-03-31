@@ -3,6 +3,8 @@
  (modes js)
  (libraries timere
             timere-parse
+            timere.tzdb.none
+            timere.tzlocal.none
             js_of_ocaml
             oseq
  )
