@@ -27,6 +27,7 @@ jobs:
 
       - name: Build
         run: |
+          opam update
           opam install dune oseq js_of_ocaml js_of_ocaml-ppx js_of_ocaml-lwt lwt lwt_ppx
           opam install timere timere-parse
           eval $(opam env); make
