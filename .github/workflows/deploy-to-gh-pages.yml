@@ -27,9 +27,9 @@ jobs:
 
       - name: Build
         run: |
-          opam update
           opam install dune oseq js_of_ocaml js_of_ocaml-ppx js_of_ocaml-lwt lwt lwt_ppx
-          opam install timere timere-parse
+          opam pin add timere https://github.com/daypack-dev/timere.git
+          opam pin add timere-parse https://github.com/daypack-dev/timere.git
           eval $(opam env); make
           mkdir public
           cp _build/default/src/* public/
