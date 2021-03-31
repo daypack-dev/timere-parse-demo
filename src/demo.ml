@@ -19,7 +19,9 @@ let () =
                  Timere.(
                    resolve ~search_using_tz:tz
                      (t
-                      & after (Date_time.now ~tz_of_date_time:tz ())
+                      & after
+                        (Date_time.make_exn ~tz ~year:2000 ~month:`Jan ~day:1
+                           ~hour:0 ~minute:0 ~second:0)
                       & before
                         (Date_time.make_exn ~tz ~year:2050 ~month:`Jan ~day:1
                            ~hour:0 ~minute:0 ~second:0)))
