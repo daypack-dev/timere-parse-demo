@@ -21,10 +21,10 @@ let () =
                      (t
                       & after
                         (Date_time.make_exn ~tz ~year:2000 ~month:`Jan ~day:1
-                           ~hour:0 ~minute:0 ~second:0)
+                           ~hour:0 ~minute:0 ~second:0 ())
                       & before
                         (Date_time.make_exn ~tz ~year:2050 ~month:`Jan ~day:1
-                           ~hour:0 ~minute:0 ~second:0)))
+                           ~hour:0 ~minute:0 ~second:0 ())))
                with
                | Error msg -> write_error msg
                | Ok s -> (
@@ -37,12 +37,14 @@ let () =
                            |> Timere.Date_time.of_timestamp ~tz_of_date_time:tz
                            |> Option.get
                            |> Timere.Date_time.to_string
+                           |> Option.get
                          in
                          let y =
                            y
                            |> Timere.Date_time.of_timestamp ~tz_of_date_time:tz
                            |> Option.get
                            |> Timere.Date_time.to_string
+                           |> Option.get
                          in
                          Printf.sprintf "[%s, %s)" x y)
                      |> List.of_seq
