@@ -19,7 +19,7 @@ let () =
                  Timere.(
                    resolve ~search_using_tz:tz
                      (t
-                      & after
+                      & since
                         (Timedesc.make_exn ~tz ~year:2000 ~month:1 ~day:1 ~hour:0
                            ~minute:0 ~second:0 ())
                       & before
