@@ -20,11 +20,11 @@ let () =
                    resolve ~search_using_tz:tz
                      (t
                       & after
-                        (Timedesc.make_exn ~tz ~year:2000 ~month:1 ~day:1
-                           ~hour:0 ~minute:0 ~second:0 ())
+                        (Timedesc.make_exn ~tz ~year:2000 ~month:1 ~day:1 ~hour:0
+                           ~minute:0 ~second:0 ())
                       & before
-                        (Timedesc.make_exn ~tz ~year:2050 ~month:1 ~day:1
-                           ~hour:0 ~minute:0 ~second:0 ())))
+                        (Timedesc.make_exn ~tz ~year:2050 ~month:1 ~day:1 ~hour:0
+                           ~minute:0 ~second:0 ())))
                with
                | Error msg -> write_error msg
                | Ok s -> (
