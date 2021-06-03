@@ -29,7 +29,7 @@ jobs:
         run: |
           opam install dune oseq js_of_ocaml js_of_ocaml-ppx js_of_ocaml-lwt lwt lwt_ppx
           opam pin add timedesc https://github.com/daypack-dev/timere.git
-          opam pin add timere https://github.com/daypack-dev/timere.git
+          opam pin add timere.0.6.0 https://github.com/daypack-dev/timere.git
           opam pin add timere-parse https://github.com/daypack-dev/timere.git
           eval $(opam env); make
           mkdir public
