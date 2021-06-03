@@ -26,14 +26,20 @@ let () =
                with
                | Error msg -> write_error msg
                | Ok s -> (
-                   let s = s |> OSeq.take 100 in
+                   let s = s |> OSeq.take 20 in
                    match s () with
                    | Seq.Nil -> write_msg "No time slots found"
                    | _ ->
                      let str =
-                       Fmt.str "%a"
-                         (Timedesc.Interval.pp_seq ~display_using_tz:tz ())
-                         s
+                       String.concat "<br>"
+                         (s
+                          |> Seq.map (fun (x, y) ->
+                              Fmt.str "[%a, %a)"
+                                (Timedesc.Timestamp.pp_rfc3339 ())
+                                x
+                                (Timedesc.Timestamp.pp_rfc3339 ())
+                                y)
+                          |> List.of_seq)
                      in
                      write_msg str)));
         Js._true);
