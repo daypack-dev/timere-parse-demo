@@ -28,6 +28,16 @@
           float: top;
           width: 100%;
       }
+      #displayTimeZoneBox {
+          font-family: monospace;
+          float: top;
+          width: 30%;
+      }
+      #searchTimeZoneBox {
+          font-family: monospace;
+          float: top;
+          width: 30%;
+      }
       #outputBox {
           display: block;
           background-color: lightblue;
@@ -58,6 +68,12 @@
         Enter input below and hit enter to invoke evaluation
       </div>
 
+      Search in time zone:
+      <input id="searchTimeZoneBox" type="text"/>
+      <br/>
+
+      Display in time zone:
+      <input id="displayTimeZoneBox" type="text"/>
       <input id="inputBox" type="text"/>
       <div id="outputBox"></div>
     </div>
